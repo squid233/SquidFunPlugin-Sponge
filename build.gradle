@@ -1,0 +1,45 @@
+import static java.nio.charset.StandardCharsets.UTF_8
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = 'Sponge-API'
+            url = 'http://lss233.littleservice.cn/repositories/minecraft/'
+        }
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.spongepowered.plugin' version '0.9.0'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+group = project.maven_group
+version = project.plugin_version
+description = project.plugin_description
+archivesBaseName = project.plugin_name
+
+dependencies {
+    implementation "org.spongepowered:spongeapi:${project.sponge_api}"
+    compileOnly 'org.jetbrains:annotations:19.0.0'
+}
+
+sponge {
+    plugin {
+        id = 'squidfunplugin'
+    }
+}
+
+jar {
+    from 'LICENSE'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding UTF_8.toString()
+}
+
